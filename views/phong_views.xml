@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="phong_view_list" model="ir.ui.view">
+    <field name="name">phong.view.list</field>
+    <field name="model">phong</field>
+    <field name="arch" type="xml">
+      <list string="Danh sách phòng">
+        <field name="depid"/>
+        <field name="name"/>
+        <field name="parent_id" optional="show"/>
+        <field name="manager_id" optional="show"/>
+        <field name="nhanvien_count" string="Số NV"/>
+        <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="phong_view_form" model="ir.ui.view">
+    <field name="name">phong.view.form</field>
+    <field name="model">phong</field>
+    <field name="arch" type="xml">
+      <form string="Chi tiết phòng">
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button name="action_view_nhanvien" type="object" class="oe_stat_button" icon="fa-users">
+              <field name="nhanvien_count" widget="statinfo" string="Nhân viên"/>
+            </button>
+          </div>
+          <widget name="web_ribbon" title="Ngừng hoạt động" bg_color="text-bg-danger" invisible="active"/>
+          <group>
+            <group>
+              <field name="name"/>
+              <field name="depid"/>
+              <field name="parent_id"/>
+            </group>
+            <group>
+              <field name="manager_id"/>
+              <field name="company_id" groups="base.group_multi_company"/>
+              <field name="active"/>
+            </group>
+          </group>
+          <notebook>
+            <page string="Nhân viên" name="nhanvien">
+              <field name="nhanvien_ids" readonly="1">
+                <list>
+                  <field name="empid"/>
+                  <field name="name"/>
+                  <field name="chucvu_id"/>
+                  <field name="phone"/>
+                  <field name="state" widget="badge"/>
+                </list>
+              </field>
+            </page>
+            <page string="Phòng trực thuộc" name="child">
+              <field name="child_ids" readonly="1">
+                <list>
+                  <field name="depid"/>
+                  <field name="name"/>
+                  <field name="manager_id"/>
+                </list>
+              </field>
+            </page>
+            <page string="Mô tả" name="description">
+              <field name="description"/>
+            </page>
+          </notebook>
+        </sheet>
+        <chatter/>
+      </form>
+    </field>
+  </record>
+
+  <record id="phong_view_search" model="ir.ui.view">
+    <field name="name">phong.view.search</field>
+    <field name="model">phong</field>
+    <field name="arch" type="xml">
+      <search string="Tìm phòng">
+        <field name="name" filter_domain="['|', ('name', 'ilike', self), ('depid', 'ilike', self)]" string="Tên / Mã phòng"/>
+        <field name="manager_id"/>
+        <filter name="inactive" string="Ngừng hoạt động" domain="[('active', '=', False)]"/>
+        <group expand="0" string="Nhóm theo">
+          <filter name="group_parent" string="Phòng cấp trên" context="{'group_by': 'parent_id'}"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="phong_action_window" model="ir.actions.act_window">
+    <field name="name">Quản lý phòng</field>
+    <field name="res_model">phong</field>
+    <field name="view_mode">list,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">Tạo phòng ban đầu tiên</p>
+    </field>
+  </record>
+</odoo>

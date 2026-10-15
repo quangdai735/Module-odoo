@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <menuitem id="main_menu_root" name="Quản lý nhân sự" web_icon="kiemtra3,static/description/icon.png"
+            groups="base.group_user" sequence="10"/>
+
+  <menuitem id="nhanvien_menu" name="Quản lý nhân viên" parent="main_menu_root"
+            action="nhanvien_action_window" sequence="10"/>
+  <menuitem id="phong_menu" name="Quản lý phòng" parent="main_menu_root"
+            action="phong_action_window" sequence="20"/>
+  <menuitem id="hopdong_menu" name="Hợp đồng lao động" parent="main_menu_root"
+            action="hopdong_action_window" groups="group_nhansu_user" sequence="30"/>
+
+  <menuitem id="config_menu" name="Cấu hình" parent="main_menu_root"
+            groups="group_nhansu_manager" sequence="90"/>
+  <menuitem id="chucvu_menu" name="Chức vụ" parent="config_menu"
+            action="chucvu_action" sequence="10"/>
+</odoo>

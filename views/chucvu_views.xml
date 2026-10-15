@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="chucvu_view_list" model="ir.ui.view">
+    <field name="name">chucvu.view.list</field>
+    <field name="model">chucvu</field>
+    <field name="arch" type="xml">
+      <list string="Chức vụ" editable="bottom">
+        <field name="sequence" widget="handle"/>
+        <field name="name"/>
+        <field name="description"/>
+        <field name="active" column_invisible="True"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="chucvu_action" model="ir.actions.act_window">
+    <field name="name">Chức vụ</field>
+    <field name="res_model">chucvu</field>
+    <field name="view_mode">list</field>
+  </record>
+</odoo>

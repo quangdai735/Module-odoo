@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+    <record id="seq_hopdong" model="ir.sequence">
+      <field name="name">Số hợp đồng lao động</field>
+      <field name="code">hopdong</field>
+      <field name="prefix">HDLD/%(year)s/</field>
+      <field name="padding">4</field>
+    </record>
+
+    <record id="cron_het_han_hopdong" model="ir.cron">
+      <field name="name">Nhân sự: chuyển hợp đồng quá hạn sang Hết hạn</field>
+      <field name="model_id" ref="model_hopdong"/>
+      <field name="state">code</field>
+      <field name="code">model._cron_het_han_hopdong()</field>
+      <field name="interval_number">1</field>
+      <field name="interval_type">days</field>
+    </record>
+  </data>
+</odoo>

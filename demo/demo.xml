@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+    <!-- Chức vụ -->
+    <record id="demo_chucvu_gd" model="chucvu"><field name="name">Giám đốc</field><field name="sequence">1</field></record>
+    <record id="demo_chucvu_tp" model="chucvu"><field name="name">Trưởng phòng</field><field name="sequence">2</field></record>
+    <record id="demo_chucvu_nv" model="chucvu"><field name="name">Nhân viên</field><field name="sequence">3</field></record>
+
+    <!-- Phòng -->
+    <record id="demo_phong_1" model="phong">
+      <field name="name">Nhân sự</field>
+      <field name="depid">100</field>
+    </record>
+    <record id="demo_phong_2" model="phong">
+      <field name="name">Kế hoạch</field>
+      <field name="depid">120</field>
+    </record>
+
+    <!-- Nhân viên -->
+    <record id="demo_nhanvien_me" model="nhanvien">
+      <field name="name">Bùi Quang Đại</field>
+      <field name="empid">1</field>
+      <field name="gender">nam</field>
+      <field name="phone">0977873516</field>
+      <field name="phong_id" ref="demo_phong_1"/>
+      <field name="chucvu_id" ref="demo_chucvu_tp"/>
+      <field name="state">chinh_thuc</field>
+      <field name="luong_co_ban">20000000</field>
+    </record>
+    <record id="demo_nhanvien_1" model="nhanvien">
+      <field name="name">Nguyễn Thị Hoa</field>
+      <field name="empid">11111</field>
+      <field name="gender">nu</field>
+      <field name="birthday">1995-05-20</field>
+      <field name="phone">0901111111</field>
+      <field name="email">hoa.nguyen@example.com</field>
+      <field name="phong_id" ref="demo_phong_1"/>
+      <field name="chucvu_id" ref="demo_chucvu_nv"/>
+      <field name="state">chinh_thuc</field>
+      <field name="luong_co_ban">12000000</field>
+    </record>
+    <record id="demo_nhanvien_2" model="nhanvien">
+      <field name="name">Bùi Văn Bình</field>
+      <field name="empid">22222</field>
+      <field name="gender">nam</field>
+      <field name="birthday">1998-11-02</field>
+      <field name="phone">0902222222</field>
+      <field name="phong_id" ref="demo_phong_2"/>
+      <field name="chucvu_id" ref="demo_chucvu_nv"/>
+      <field name="state">thu_viec</field>
+      <field name="luong_co_ban">9000000</field>
+    </record>
+
+    <record id="demo_phong_1" model="phong">
+      <field name="manager_id" ref="demo_nhanvien_me"/>
+    </record>
+
+    <!-- Hợp đồng -->
+    <record id="demo_hopdong_1" model="hopdong">
+      <field name="nhanvien_id" ref="demo_nhanvien_1"/>
+      <field name="loai">khong_xac_dinh</field>
+      <field name="ngay_bat_dau">2023-01-01</field>
+      <field name="luong">12000000</field>
+      <field name="state">hieu_luc</field>
+    </record>
+    <record id="demo_hopdong_2" model="hopdong">
+      <field name="nhanvien_id" ref="demo_nhanvien_2"/>
+      <field name="loai">thu_viec</field>
+      <field name="ngay_bat_dau">2026-09-01</field>
+      <field name="ngay_ket_thuc">2026-11-30</field>
+      <field name="luong">9000000</field>
+      <field name="state">hieu_luc</field>
+    </record>
+  </data>
+</odoo>

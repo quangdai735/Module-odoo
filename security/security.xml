@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="module_category_nhansu" model="ir.module.category">
+    <field name="name">Quản lý nhân sự</field>
+    <field name="sequence">30</field>
+  </record>
+
+  <record id="group_nhansu_user" model="res.groups">
+    <field name="name">Nhân viên nhân sự</field>
+    <field name="category_id" ref="module_category_nhansu"/>
+    <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+  </record>
+
+  <record id="group_nhansu_manager" model="res.groups">
+    <field name="name">Quản lý nhân sự</field>
+    <field name="category_id" ref="module_category_nhansu"/>
+    <field name="implied_ids" eval="[(4, ref('group_nhansu_user'))]"/>
+    <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+  </record>
+
+  <!-- Đa công ty -->
+  <record id="nhanvien_company_rule" model="ir.rule">
+    <field name="name">Nhân viên: theo công ty</field>
+    <field name="model_id" ref="model_nhanvien"/>
+    <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+  </record>
+  <record id="phong_company_rule" model="ir.rule">
+    <field name="name">Phòng: theo công ty</field>
+    <field name="model_id" ref="model_phong"/>
+    <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+  </record>
+  <record id="hopdong_company_rule" model="ir.rule">
+    <field name="name">Hợp đồng: theo công ty</field>
+    <field name="model_id" ref="model_hopdong"/>
+    <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+  </record>
+</odoo>

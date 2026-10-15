@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_phong_user,access.phong.user,model_phong,group_nhansu_user,1,1,1,0
+access_phong_manager,access.phong.manager,model_phong,group_nhansu_manager,1,1,1,1
+access_phong_employee,access.phong.employee,model_phong,base.group_user,1,0,0,0
+access_chucvu_user,access.chucvu.user,model_chucvu,group_nhansu_user,1,1,1,0
+access_chucvu_manager,access.chucvu.manager,model_chucvu,group_nhansu_manager,1,1,1,1
+access_chucvu_employee,access.chucvu.employee,model_chucvu,base.group_user,1,0,0,0
+access_nhanvien_user,access.nhanvien.user,model_nhanvien,group_nhansu_user,1,1,1,0
+access_nhanvien_manager,access.nhanvien.manager,model_nhanvien,group_nhansu_manager,1,1,1,1
+access_nhanvien_employee,access.nhanvien.employee,model_nhanvien,base.group_user,1,0,0,0
+access_hopdong_user,access.hopdong.user,model_hopdong,group_nhansu_user,1,1,1,0
+access_hopdong_manager,access.hopdong.manager,model_hopdong,group_nhansu_manager,1,1,1,1
